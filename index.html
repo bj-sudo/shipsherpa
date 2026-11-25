@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn a product idea into a considered build path." />
+    <title>ShipSherpa — make the first build clear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./overrides.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="ShipSherpa home"><span class="mark">↗</span>ShipSherpa</a>
+      <div class="header-note"><span class="signal"></span>Early access · Demo mode</div>
+    </header>
+
+    <main id="top" class="page-shell">
+      <section class="intro">
+        <p class="eyebrow">A clearer first build</p>
+        <h1>From rough idea<br />to a path forward.</h1>
+        <p class="intro-copy">Tell us what you want to make. ShipSherpa turns the fog into a scoped brief, a sensible stack, and the exact first prompt for your chosen builder.</p>
+      </section>
+
+      <section class="workbench" aria-label="Build planner">
+        <div class="step-label"><span>01</span> Frame the idea</div>
+        <label class="idea-label" for="idea">What are you trying to make?</label>
+        <textarea id="idea" maxlength="700" placeholder="For example: a simple way for student clubs to plan events, assign tasks, and see what still needs doing."></textarea>
+        <div class="helper-row"><span id="char-count">0 / 700</span><button id="use-example" class="text-button" type="button">Load an example ↗</button></div>
+        <div class="style-box"><label for="style-notes">Styling / UI direction <span>Optional</span></label><input id="style-notes" type="text" maxlength="180" placeholder="e.g. Quiet editorial, dark mode, playful, like a field notebook…" /></div>
+
+        <div class="constraint-grid">
+          <fieldset>
+            <legend><span>02</span> Your experience</legend>
+            <div class="choices" data-group="experience">
+              <button class="choice selected" type="button" data-value="New to building">New to building</button>
+              <button class="choice" type="button" data-value="Some no-code">Some no-code</button>
+              <button class="choice" type="button" data-value="Can code a little">Can code a little</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><span>03</span> First version budget</legend>
+            <div class="budget-control"><input id="budget" type="range" min="0" max="500" value="0" step="10" aria-label="First version budget in US dollars" /><div class="budget-scale"><span>$0</span><strong id="budget-value">$0</strong><span>$500+</span></div></div>
+          </fieldset>
+          <fieldset>
+            <legend><span>04</span> Where do you want to build?</legend>
+            <div class="choices" data-group="buildLocation">
+              <button class="choice selected" type="button" data-value="Web app">Web app</button>
+              <button class="choice" type="button" data-value="Native mobile app">Native mobile app</button>
+              <button class="choice" type="button" data-value="Desktop app">Desktop app</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><span>05</span> What device are you making it for?</legend>
+            <div class="choices" data-group="device">
+              <button class="choice selected" type="button" data-value="Laptop / desktop">Laptop / desktop</button>
+              <button class="choice" type="button" data-value="Phone">Phone</button>
+              <button class="choice" type="button" data-value="Both">Both</button>
+            </div>
+          </fieldset>
+          <fieldset class="builder-fieldset">
+            <legend><span>06</span> Preferred builder</legend>
+            <div class="choices" data-group="builder">
+              <button class="choice selected" type="button" data-value="Auto-recommend">Auto-recommend</button>
+              <button class="choice" type="button" data-value="Lovable">Lovable</button>
+              <button class="choice" type="button" data-value="Replit">Replit</button>
+              <button class="choice" type="button" data-value="Bolt">Bolt</button>
+              <button class="choice" type="button" data-value="v0">v0</button>
+              <button class="choice" type="button" data-value="Cursor">Cursor</button>
+              <button class="choice" type="button" data-value="GPT Codex">GPT Codex</button>
+              <button class="choice" type="button" data-value="Claude">Claude</button>
+              <button class="choice" type="button" data-value="Firebase Studio">Firebase Studio</button>
+              <button class="choice" type="button" data-value="FlutterFlow">FlutterFlow</button>
+            </div>
+            <div class="premium-box"><p>I already have premium access to:</p><div class="premium-options">
+              <label><input type="checkbox" value="Lovable" /> Lovable</label><label><input type="checkbox" value="Replit" /> Replit</label><label><input type="checkbox" value="Bolt" /> Bolt</label><label><input type="checkbox" value="v0" /> v0</label><label><input type="checkbox" value="Cursor" /> Cursor</label><label><input type="checkbox" value="GPT Codex" /> GPT Codex</label><label><input type="checkbox" value="Claude" /> Claude</label><label><input type="checkbox" value="Firebase Studio" /> Firebase Studio</label><label><input type="checkbox" value="FlutterFlow" /> FlutterFlow</label>
+            </div></div>
+          </fieldset>
+        </div>
+        <div class="generate-row"><p><span class="demo-dot"></span>Using a realistic demo planner. Connect your preferred LLM when you’re ready.</p><button id="generate" class="primary-button" type="button">Map my build <span>→</span></button></div>
+      </section>
+
+      <section id="results" class="results hidden" aria-live="polite"></section>
+
+      <section class="principles">
+        <p class="eyebrow">A good first build is smaller than you think</p>
+        <div><p>One user. One recurring problem. One useful loop.</p><span>ShipSherpa helps you choose the minimum believable version—not just a prettier way to overbuild.</span></div>
+      </section>
+    </main>
+    <footer>ShipSherpa <span>·</span> Practical direction for first-time makers</footer>
+    <div id="planning-overlay" class="planning-overlay hidden" aria-live="polite" aria-label="Planning your build"><div class="planning-card"><div class="path-spinner"><i></i><i></i><i></i><b>↗</b></div><p class="eyebrow">ShipSherpa is thinking</p><h2 id="planning-title">Finding the shortest useful path.</h2><p id="planning-note">Separating the must-haves from the someday features.</p><div class="planning-progress"><span></span></div></div></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
